@@ -1,0 +1,9 @@
+{
+  "id": "com.devmonster.farmos.service",
+  "description": "HelloWorld Service",
+  "services": [
+    {
+      "name": "com.devmonster.farmos.service"
+    }
+  ]
+}
