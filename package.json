@@ -1,5 +1,5 @@
 {
-    "name": "com.devmonster.farmos.service",
+    "name": "com.devmonster.farmos.farmer.service",
     "version": "1.0.0",
     "description": "Helloworld service",
     "main": "main_service.js",

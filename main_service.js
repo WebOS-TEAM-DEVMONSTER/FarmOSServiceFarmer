@@ -43,7 +43,7 @@ let ecOfSoil = 0;
 let avgEcOfSoil = 0;
 
 let imageEvaluation = "없음";
-
+let imageFile = "";
 let cnt = 0;
 let currentTime = moment();
 
