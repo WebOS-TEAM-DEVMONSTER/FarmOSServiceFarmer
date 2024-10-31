@@ -15,7 +15,7 @@ const logHeader = "[" + pkgInfo.name + "]";
 let cancel = true;
 let active = false;
 
-const BROKER_ADDRESS = 'mqtt://192.168.0.4';  // 브로커 주소 (mqtt://를 붙임)
+const BROKER_ADDRESS = 'mqtt://52.63.12.126';  // 브로커 주소 (mqtt://를 붙임)
 const PORT = 1883;  // MQTT 기본 포트
 
 let TOPIC = "defaultTopic";
@@ -41,6 +41,8 @@ let avgPhOfSoil = 0;
 //토양 ec
 let ecOfSoil = 0;
 let avgEcOfSoil = 0;
+
+let imageEvaluation = "없음";
 
 let cnt = 0;
 let currentTime = moment();
@@ -68,6 +70,7 @@ service.register("serviceOn", (message) => {
         avgPhOfSoil = 0;
         ecOfSoil = 0;
         avgEcOfSoil = 0;
+        imageEvaluation = "없음";
         cnt = 0;
 
         // MQTT 클라이언트 생성
@@ -93,6 +96,7 @@ service.register("serviceOn", (message) => {
                 moistureOfSoil = msgValue.moistureOfSoil ? msgValue.moistureOfSoil : moistureOfSoil;
                 phOfSoil = msgValue.phOfSoil ? msgValue.phOfSoil : phOfSoil;
                 ecOfSoil = msgValue.ecOfSoil ? msgValue.ecOfSoil : ecOfSoil;
+                imageEvaluation = msgValue.imageEvaluation ? msgValue.imageEvaluation : imageEvaluation;
 
                 // 각 센서 데이터의 평균값 계산
                 avgTemperature = cnt === 1 ? temperature : ((avgTemperature * (cnt - 1)) + temperature) / cnt;
@@ -177,6 +181,7 @@ function sendResponses() {
                 moistureOfSoil: moistureOfSoil,
                 phOfSoil: phOfSoil,
                 ecOfSoil: ecOfSoil,
+                imageEvaluation: imageEvaluation,
                 currentHour: currentTime.hour()
             });
         }
